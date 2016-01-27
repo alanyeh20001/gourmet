@@ -8,7 +8,13 @@
 </head>
 <body>
 
+<%= render "common/navbar" %>
+<div class="container" style="padding-top: 70px">
+<%= notice_message %>
 <%= yield %>
+</div>
+
+<%= render "common/footer" %>
 
 </body>
 </html>

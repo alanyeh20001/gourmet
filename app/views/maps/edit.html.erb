@@ -1,0 +1,10 @@
+<div class="col-md-12">
+	<h3 style="color: blue; font-weight: 100">修改美食地點</h3>
+	
+	<hr>
+	
+	<%= simple_form_for @map do |f| %>
+		<%= f.input :title, label: "Site", input_html: { class: 'form-control' }, placeholder: 'Enter your site here !' %>
+		<%= f.submit "Submit", class: "btn btn-primary", data: { disable_with: "Submitting..." } %>
+	<% end %>
+</div>

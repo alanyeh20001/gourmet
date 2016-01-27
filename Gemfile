@@ -7,6 +7,7 @@ gem 'rails', '4.2.4'
 gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+gem 'bootstrap-sass'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -22,6 +23,18 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+
+# Use simple form gem to facilitate form input
+gem 'simple_form'
+# Use Devise as user authentication
+gem 'devise'
+# Install geocoder & gmaps4rails to handle google map
+gem 'geocoder'
+gem 'gmaps4rails'
+# The gem fetch meta information from other websites
+gem 'pismo'
+# Upload Image gem
+gem 'paperclip','~>4.3'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

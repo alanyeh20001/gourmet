@@ -1,0 +1,61 @@
+<!-- Map index.html.erb -->
+<div id="map-index">
+  <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-12 col-xs-offset-0">
+    <img src="http://ext.pimg.tw/irvil88/1344699454-2384809030.png" usemap="#taiwan-gourmet">
+    <map name="taiwan-gourmet">
+      <area shape="circle" coords="342,29,10" alt="keelung" href="/maps/1">
+      <area shape="poly" coords="324,18,334,42,327,53,315,42,312,28" alt="taipei" href="/maps/2">
+      <area shape="poly" coords="343,22,322,4,290,28,304,42,292,54,316,93,378,45,358,30,326,56,309,45,307,30,324,15" alt="new-taipei" href="/maps/3">
+      <area shape="poly" coords="" alt="taoyuan" href="/maps/4">
+      <area shape="" coords="" alt="hsinchu" href="/maps/5">
+      <area shape="" coords="" alt="miaoli" href="/maps/6">
+      <area shape="" coords="" alt="taichung" href="/maps/7">
+      <area shape="" coords="" alt="chunghwa" href="">
+      <area shape="" coords="" alt="nantou" href="">
+      <area shape="" coords="" alt="yunlin" href="">
+      <area shape="" coords="" alt="chiayi" href="">
+      <area shape="" coords="" alt="tainan" href="">
+      <area shape="" coords="" alt="kaohsiung" href="">
+      <area shape="" coords="" alt="pintung" href="">
+      <area shape="" coords="" alt="ilan" href="">
+      <area shape="" coords="" alt="hualien" href="">
+      <area shape="" coords="" alt="taitung" href="">
+      <area shape="" coords="" alt="penghu" href="">
+    </map>
+  </div>
+  <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-12 col-xs-offset-0 text-center">
+  <h2><em>Search or Recommend</em></h2>
+  <h2><em>Any</em></h2>
+  <h2><em><strong id="awesome">Awesome</strong> Restaurant ?</em></h2>
+  <br><br>
+  <h4><span class="glyphicon glyphicon-hand-right"></span> <strong>You Are at Right Place !</strong></h4>
+  <br>
+  <h3><strong>Click on the Map Now !</strong></h3> 
+  </div>
+</div>
+<!--
+	<div class="map" >
+		<%= link_to("New Site", new_map_path, class:"btn btn-info pull-right") %>		
+	</div>
+	
+	<div class="row" style="padding-top: 50px">
+		<div class="col-sm-5">
+			<img src="http://ext.pimg.tw/irvil88/1344699454-2384809030.png" style="width:275px; height:350px; display:block; margin:auto">
+		</div>
+		<div class="col-sm-7">
+			<div class="row">
+				<% @map.each do |map| %>
+					<div class="col-sm-6" style="background-color:lavenderblush">
+						<%= link_to(map.title, map_path(map))%>
+						
+						<% if map.editable_by?(current_user) %>
+							<%= link_to("Edit", edit_map_path(map), class:"btn btn-default btn-xs btn pull-right") %>
+				  		<%= link_to("Delete", map_path(map), method: :delete, class:"btn btn-default btn-xs btn pull-right") %>
+				  	<% end %>
+					</div>
+	      <% end %>
+			</div>
+		</div>
+  </div>
+-->
+
