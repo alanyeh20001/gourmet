@@ -1,9 +1,9 @@
 <!-- Map show.html.erb -->
 <div id="map-show">
   <!-- Insert google scripts in the domain -->
-  <script src="//maps.google.com/maps/api/js?v=3.18&sensor=false&client=&key=&libraries=geometry&language=&hl=&region="></script> 
+<!--  <script src="//maps.google.com/maps/api/js?v=3.18&sensor=false&client=&key=&libraries=geometry&language=&hl=&region="></script> 
   <script src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"></script>
-
+-->
   <div class="row">
     <div class="col-lg-4 col-md-4 col-md-4 col-sm-4 col-xs-4">
       <h2 class="title"><strong><%= @map.title %></strong></h2>
@@ -33,12 +33,20 @@
       <%= link_to restaurant.title, restaurant.website, target: "_blank" %>
     </div>
     <div class="col-lg-1 col-md-1 col-sm-2 col-xs-6 text-right">
-      <button type="button" class="btn btn-link" data-toggle="modal" data-target="#GMap">
+<!--      <button type="button" class="btn btn-link" data-toggle="modal" data-target="#GMap">
 			  <span class="glyphicon glyphicon-map-marker" id="map-icon"></span>
 			</button>
-    </div>
-    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3 toolbar">
-      favorite
+-->    </div>
+    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3">
+      <% if restaurant.liked_by?(current_user, restaurant) %>
+        <%= link_to remove_like_map_restaurant_path(@map,restaurant, params: {restaurant_id: restaurant.id, user_id: current_user.id}), method: 'delete' do %>
+          <span class="glyphicon glyphicon-heart" id="heart-icon"></span>
+        <% end %>
+      <% else %>
+        <%= link_to add_like_map_restaurant_path(@map,restaurant, like: {restaurant_id: restaurant.id, user_id: current_user.id}), method: 'post', :class => "vote", data: {toggle_text: "Unlike", toggle_href: remove_like_map_restaurant_path(@map, restaurant), id: restaurant.id} do %>
+          <span class="glyphicon glyphicon-heart-empty" id="heart-icon"></span>
+        <% end %>
+      <% end %>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-8 col-xs-12 toolbar">
       <% if restaurant.editable_by?(current_user) %>
@@ -51,6 +59,7 @@
 </div>
 
 <!-- Modal -->
+<!--
 <div id="GMap" class="modal" role="dialog">
   <div class="modal-dialog">				
 	  <div class="modal-content">
@@ -66,8 +75,9 @@
 	  </div>
   </div>
 </div>	
-
+-->
 <!-- JavaScript code to create the map & location -->
+<!--
 <script type="text/javascript">
 	handler = Gmaps.build('Google');
 	handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
@@ -80,5 +90,5 @@
     google.maps.event.trigger(map, "resize");    // Resize map to adapt the dynamic element(popup)
 	});
 </script>
-											
+-->											
 

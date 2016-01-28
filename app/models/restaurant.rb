@@ -10,6 +10,7 @@ class Restaurant < ActiveRecord::Base
 	
 	belongs_to :map
 	belongs_to :author, class_name: "User", foreign_key: :user_id
+	has_many :likes
 	
 	# Tell geocoder which method returns geocodable address
 	geocoded_by :location
@@ -19,4 +20,8 @@ class Restaurant < ActiveRecord::Base
 	def editable_by?(user)
 		user && user == author
 	end
+	
+	def liked_by?(user,restaurant)
+    Like.where(:user_id => user.id, :restaurant_id => restaurant.id).present?
+  end
 end

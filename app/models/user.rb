@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
          
   has_many :maps
 	has_many :restaurants
+	has_many :likes
 end

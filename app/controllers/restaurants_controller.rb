@@ -46,9 +46,38 @@ class RestaurantsController < ApplicationController
 	  redirect_to map_path(@map), alert: "餐廳已經刪除~"
 	end
 	
+	def add_like
+	  @restaurant_to_add_like = Like.create(like_params)
+	  
+	  @restaurant_to_add_like.save
+    
+    redirect_to "/maps/" + params[:map_id]    
+#    if request.xhr?
+#      head :ok
+#    else
+#      redirect_to :back
+#    end
+	end
+	
+	def remove_like
+	  @restaurant_to_remove_like = Like.find_by("restaurant_id = ? AND user_id = ?", params[:restaurant_id], params[:user_id]) 
+	  @restaurant_to_remove_like.destroy
+	  
+	  redirect_to "/maps/" + params[:map_id]  
+#	  if request.xhr?
+#      head :ok
+#    else
+#      redirect_to :back
+#	  end
+	end
+	
 	private
 	
 	def restaurant_params
 		params.require(:restaurant).permit(:website, :location, :title, :photo)
+	end
+	
+	def like_params
+	  params.require(:like).permit(:restaurant_id, :user_id)
 	end
 end

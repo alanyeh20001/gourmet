@@ -30,6 +30,11 @@
 							<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
+						  <li>
+						    <%= link_to(admin_restaurants_path) do %>
+						      <span class="glyphicon glyphicon-heart"></span><%= " 我的最愛" %>
+						    <% end %>
+						  </li>
 							<li>
 								<%= link_to(destroy_user_session_path, method: :delete) do %>
 									<span class="glyphicon glyphicon-log-out"></span><%= " 登出" %>

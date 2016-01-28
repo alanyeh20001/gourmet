@@ -2,9 +2,19 @@ Rails.application.routes.draw do
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  resources :maps do
-   	resources :restaurants
+  namespace :admin do
+    resources :restaurants
   end
+  resources :maps do
+   	resources :restaurants do
+   	  member do
+   	    post 'add_like'
+   	    delete 'remove_like'
+   	  end
+    end
+  end
+ 
+  #post '/add_like' => 'restaurants#add_like'
   # You can have the root of your site routed with "root"
    root 'maps#index'
 

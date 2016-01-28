@@ -7,4 +7,5 @@ class Map < ActiveRecord::Base
 	def editable_by?(user)
 		user && user == owner
 	end
+	
 end
