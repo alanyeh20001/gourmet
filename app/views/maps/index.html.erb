@@ -1,62 +1,52 @@
 <!-- Map index.html.erb -->
-<div id="map-index">
-  <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-12 col-xs-offset-0">
-    <img src="http://ext.pimg.tw/irvil88/1344699454-2384809030.png" usemap="#taiwan-gourmet">
+<div id="map-index" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <div class="col-lg-7 col-lg-offset-0 col-md-7 col-md-offset-0 col-sm-7 col-sm-offset-3 col-xs-12 col-xs-offset-0">
+    <img src="http://i.imgur.com/NC8mREo.png?1" usemap="#taiwan-gourmet" />
     <map name="taiwan-gourmet">
       <area shape="circle" coords="342,29,10" alt="keelung" href="/maps/1">
       <area shape="poly" coords="324,18,334,42,327,53,315,42,312,28" alt="taipei" href="/maps/2">
       <area shape="poly" coords="343,22,322,4,290,28,304,42,292,54,316,93,378,45,358,30,326,56,309,45,307,30,324,15" alt="new-taipei" href="/maps/3">
-      <area shape="poly" coords="" alt="taoyuan" href="/maps/4">
-      <area shape="" coords="" alt="hsinchu" href="/maps/5">
-      <area shape="" coords="" alt="miaoli" href="/maps/6">
-      <area shape="" coords="" alt="taichung" href="/maps/7">
-      <area shape="" coords="" alt="chunghwa" href="">
-      <area shape="" coords="" alt="nantou" href="">
-      <area shape="" coords="" alt="yunlin" href="">
-      <area shape="" coords="" alt="chiayi" href="">
-      <area shape="" coords="" alt="tainan" href="">
-      <area shape="" coords="" alt="kaohsiung" href="">
-      <area shape="" coords="" alt="pintung" href="">
-      <area shape="" coords="" alt="ilan" href="">
-      <area shape="" coords="" alt="hualien" href="">
-      <area shape="" coords="" alt="taitung" href="">
-      <area shape="" coords="" alt="penghu" href="">
+      <area shape="poly" coords="285,33,256,52,273,61,292,81,303,103,309,97,303,76,289,61,294,36" alt="taoyuan" href="/maps/4">
+      <area shape="poly" coords="250,58,241,82,288,123,298,108,294,105,285,82" alt="hsinchu" href="/maps/5">
+      <area shape="poly" coords="235,90,207,127,232,145,240,138,261,141,282,126,256,121,255,103" alt="miaoli" href="/maps/6">
+      <area shape="poly" coords="201,133,187,156,216,183,231,169,295,150,289,133,252,150,223,151" alt="taichung" href="/maps/7">
+      <area shape="poly" coords="181,171,160,207,196,214,199,187" alt="changhua" href="/maps/8">
+      <area shape="poly" coords="208,192,207,240,255,262,286,162" alt="nantou" href="/maps/9">
+      <area shape="poly" coords="150,217,139,256,199,226" alt="yunlin" href="/maps/10">
+      <area shape="poly" coords="141,265,138,283,178,274,199,295,228,270,198,244" alt="chiayi" href="/maps/11">
+      <area shape="poly" coords="135,298,144,339,169,342,193,312,178,285" alt="tainan" href="/maps/12">
+      <area shape="poly" coords="147,354,169,400,180,352,222,348,244,288,238,270,171,348" alt="kaohsiung" href="/maps/13">
+      <area shape="poly" coords="186,360,180,408,219,478,232,460,216,427,214,381,228,360" alt="pingtung" href="/maps/14">
+      <area shape="poly" coords="352,70,297,127,352,138" alt="ilan" href="/maps/15">
+      <area shape="poly" coords="309,144,258,277,288,309,303,270,345,151" alt="hualien" href="/maps/16">
+      <area shape="poly" coords="250,297,234,339,241,361,222,394,234,435,298,318,310,273,288,318" alt="taitung" href="/maps/17">
+      <area shape="circle" coords="64,247,20" alt="penghu" href="/maps/18">
     </map>
   </div>
-  <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-12 col-xs-offset-0 text-center">
-	  
-    <h2><em>Search or Recommend</em></h2>
-    <h2><em>Any</em></h2>
-    <h2><em><strong id="awesome">Awesome</strong> Restaurant ?</em></h2>
-    <br><br>
-    <h4><span class="glyphicon glyphicon-hand-right"></span> <strong>You Are at Right Place !</strong></h4>
-    <br>
-    <h3><strong>Click on the Map Now !</strong></h3> 
+  <br><br>
+  <div class="col-lg-5 col-lg-offset-0 col-md-5 col-md-offset-0 col-sm-5 col-sm-offset-3 col-xs-12 col-xs-offset-0" id="description">
+    <div class="row text-center">
+      <h3><em>Search or Recommend</em></h3>
+      <h3><em>Any</em></h3>
+      <h3><em><strong id="awesome">Awesome</strong></em> Restaurant ?</h3>
+      <br><br>
+      <h4><span class="glyphicon glyphicon-hand-right"></span> <strong>You Are at Right Place !</strong></h4>
+      <br>
+      <h3><strong>Click on the Map Now !</strong></h3>
+    </div>
+    <div class="row">
+      <% if current_user %>
+        <% if current_user.id == 1 %>
+          <%= link_to "New Map", new_map_path, class: "btn btn-danger btn-sm pull-right" %><br>
+          <% @maps.each do |map| %>
+            <%= map.title %>
+            <%= link_to("Edit", edit_map_path(map), class:"btn btn-default btn-xs btn") %>
+		        <%= link_to("Delete", map_path(map), method: :delete, class:"btn btn-default btn-xs btn") %>
+          <% end %>
+        <% end %>
+      <% end %>
+	  </div>
   </div>
 </div>
-<!--
-	<div class="map" >
-		<%= link_to("New Site", new_map_path, class:"btn btn-info pull-right") %>		
-	</div>
-	
-	<div class="row" style="padding-top: 50px">
-		<div class="col-sm-5">
-			<img src="http://ext.pimg.tw/irvil88/1344699454-2384809030.png" style="width:275px; height:350px; display:block; margin:auto">
-		</div>
-		<div class="col-sm-7">
-			<div class="row">
-				<% @map.each do |map| %>
-					<div class="col-sm-6" style="background-color:lavenderblush">
-						<%= link_to(map.title, map_path(map))%>
-						
-						<% if map.editable_by?(current_user) %>
-							<%= link_to("Edit", edit_map_path(map), class:"btn btn-default btn-xs btn pull-right") %>
-				  		<%= link_to("Delete", map_path(map), method: :delete, class:"btn btn-default btn-xs btn pull-right") %>
-				  	<% end %>
-					</div>
-	      <% end %>
-			</div>
-		</div>
-  </div>
--->
+
 

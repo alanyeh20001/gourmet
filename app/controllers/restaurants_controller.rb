@@ -2,6 +2,7 @@ class RestaurantsController < ApplicationController
   before_action :authenticate_user!
 	
 	def new
+	  @maps = Map.all
 		@map = Map.find(params[:map_id])
 		@restaurant = @map.restaurants.build
 	end
@@ -23,6 +24,7 @@ class RestaurantsController < ApplicationController
 	end
 	
 	def edit
+	  @maps = Map.all
 		@map = Map.find(params[:map_id])
 		@restaurant = current_user.restaurants.find(params[:id])
 	end

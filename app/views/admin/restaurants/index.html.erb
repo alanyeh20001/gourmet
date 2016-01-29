@@ -1,0 +1,84 @@
+<!-- Admin/Restaurant index.html.erb -->
+<div id="admin-restaurant-index">
+<!-- Insert google scripts in the domain -->
+  <script src="//maps.google.com/maps/api/js?v=3.18&sensor=false&client=&key=&libraries=geometry&language=&hl=&region="></script> 
+  <script src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"></script>
+  
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <h4 class="title-content"><strong>推薦食記</strong></h4>
+    </div>
+  </div>
+  <% @restaurants_has_liked.each do |restaurant| %>
+  <div class="row">
+    <div class="title-content">
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+        <% if restaurant.photo_file_name != nil %>
+          <%= image_tag restaurant.photo.url(:medium) %>
+        <% else %>
+          <%= image_tag("no_image.jpg", size: "100x67") %>
+        <% end %>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-10 col-xs-9">
+        <%= link_to restaurant.title, restaurant.website, target: "_blank" %>
+      </div>
+      <div class="col-lg-1 col-md-1 col-sm-2 col-xs-6 text-right">
+        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#GMap">
+			    <span class="glyphicon glyphicon-map-marker" id="map-icon"></span>
+			  </button>
+      </div>
+      <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3">
+        <% if restaurant.liked_by?(current_user, restaurant) %>
+          <%= link_to remove_like_map_restaurant_path(restaurant.map, restaurant, params: {restaurant_id: restaurant.id, user_id: current_user.id}), class: "btn btn-link", method: 'delete' do %>
+            <span class="glyphicon glyphicon-heart" id="heart-icon"></span>
+          <% end %>
+        <% else %>
+          <%= link_to add_like_map_restaurant_path(restaurant.map, restaurant, like: {restaurant_id: restaurant.id, user_id: current_user.id}), method: 'post', class: "btn btn-link", data: {toggle_text: "Unlike", toggle_href: remove_like_map_restaurant_path(@map, restaurant), id: restaurant.id} do %>
+            <span class="glyphicon glyphicon-heart-empty" id="heart-icon"></span>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-8 col-xs-12 toolbar">
+        <% if restaurant.editable_by?(current_user) %>
+			    <%= link_to "Edit", edit_map_restaurant_path(restaurant.map, restaurant), class: "btn btn-default pull-right btn-sm" %>
+			    <%= link_to "Delete", map_restaurant_path(restaurant.map, restaurant), method: :delete, class: "btn btn-default pull-right btn-sm", data: {confirm: "Are you sure?"} %>
+			  <% end %>
+      </div>
+    </div>
+  </div><hr>
+  <% end %>
+</div>
+
+<!-- Modal -->
+
+<div id="GMap" class="modal" role="dialog">
+  <div class="modal-dialog">				
+	  <div class="modal-content">
+		  <div class="modal-header">
+			  <button type="button" class="close" data-dismiss="modal">&times;</button>
+			  <h4 class="modal-title text-center text-info" ><strong>Find Out Where Is It !</strong></h4>
+		  </div>
+		  <div class="modal-body">
+			  <div style='width: 100%;'>
+					<div id="map" style='width: 100%; height: 300px;'></div>
+				</div>
+		  </div>
+	  </div>
+  </div>
+</div>	
+
+<!-- JavaScript code to create the map & location -->
+
+<script type="text/javascript">
+	handler = Gmaps.build('Google');
+	handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  	markers = handler.addMarkers(<%=raw @hash.to_json %>);
+  	handler.bounds.extendWith(markers);
+  	handler.fitMapToBounds();
+	});	
+	// To get the map displayed completely & recenter
+	$('#GMap').on('shown.bs.modal', function () {			   
+    google.maps.event.trigger(map, "resize");    // Resize map to adapt the dynamic element(popup)
+	});
+</script>
+

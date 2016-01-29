@@ -1,10 +1,14 @@
 #map-index {
   
+  background: rgba(238, 238, 238, 0.6);
+  border-radius: 10px;
+  
   img {
     width:393px; 
     height:500px; 
     display:block; 
     margin:auto;
+    padding-top: 20px;
   }
   
   h2 {
@@ -14,5 +18,10 @@
   #awesome {
     color: red;
     font-size: 40px;
+  }
+  
+  #description {
+   // background: rgba(238, 238, 238, 0.6);
+   // border-radius: 10px;
   }
 }

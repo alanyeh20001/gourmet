@@ -1,12 +1,17 @@
 #map-show {
   
-  .title {
-    color: blue; 
+  background: rgba(238, 238, 238, 0.8);
+  border-radius: 10px;
+  
+  .title-content {
+    color: black; 
     font-family: Helvetica, Arial, sans-serif;
+    padding-left: 20px;
   }
   
   .edit-new-button {
     padding-top: 20px;
+    padding-right: 30px;
   }
   
   #map-icon {
@@ -21,6 +26,7 @@
   
   .toolbar {
     padding-top: 5px;
+    padding-right: 30px;
   }
 
 }

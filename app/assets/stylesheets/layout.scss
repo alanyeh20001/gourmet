@@ -1,0 +1,38 @@
+
+html, body {
+  height: 100%;
+}
+
+#wrapper {
+  min-height: 100%;
+  position: relative;
+}
+
+.navbar-brand {
+  color: #c53e3e !important;
+}
+
+.main {
+  padding-top: 70px;
+  padding-bottom: 100px;
+}
+
+body {
+  background-color: white; 
+  background-image: url("IMG_7545.JPG");
+  background-repeat: repeat;
+  background-size: cover;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 70px;
+  background-color: #202020;
+  color: #c3c3c3;
+}
+
+#footer-text {
+  padding-top: 8px;
+}
