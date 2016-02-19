@@ -8,10 +8,19 @@ class MapsController < ApplicationController
 	def show
 		@map = Map.find(params[:id])
 		@restaurant = @map.restaurants.order(created_at: :desc)
-
-		@hash = Gmaps4rails.build_markers(@restaurant) do |restaurant, marker|
-			marker.lat restaurant.latitude
-			marker.lng restaurant.longitude
+    
+    # filter those restaurants without addresses
+    @restaurant_with_location = []
+    @restaurant.each do |restaurant|
+      if restaurant.latitude != nil
+        @restaurant_with_location.push(restaurant)
+      end
+    end
+    
+		@hash = Gmaps4rails.build_markers(@restaurant_with_location) do |restaurant, marker|
+		  marker.lat restaurant.latitude
+		  marker.lng restaurant.longitude
+		  marker.infowindow restaurant.title
 		end
 	end
 	
