@@ -1,8 +1,6 @@
 <!-- Map show.html.erb -->
 <div id="map-show">
   <!-- Insert google scripts in the domain -->
-<script src="//maps.google.com/maps/api/js?v=3.18&sensor=false&client=&key=&libraries=geometry&language=&hl=&region="></script> 
-<script src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"></script>
 
   <div class="row">
     <div class="col-lg-4 col-md-4 col-md-4 col-sm-4 col-xs-4">
@@ -30,6 +28,7 @@
       <h4 class="title-content"><strong>推薦食記</strong></h4>
     </div>
   </div>
+  <% i=1 %>
   <% @restaurant.each do |restaurant| %>
   <div class="row">
     <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 title-content">
@@ -38,29 +37,27 @@
     <div class="col-lg-1 col-md-1 col-sm-1 col-xs-7 text-right">
     </div>
     <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
-      <button type="button" class="btn btn-link" data-toggle="modal" data-target="#Photo">
+      <button type="button" class="btn btn-link" data-toggle="modal" data-target='#Photo-<%= i %>'>
 			  <span class="glyphicon glyphicon-picture" id="photo-icon"></span>
 			</button>
 			<!-- Photo Modal -->
-			<div id="Photo" class="modal" role="dialog">
+		  <div id="Photo-<%= i %>" class="modal" role="dialog">
         <div class="modal-dialog">				
-	        <div class="modal-content">
-		        <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal">&times;</button>
-			        <h4 class="modal-title text-center text-info" ><strong>Restaurant Photo</strong></h4>
-		        </div>
-		        <div class="modal-body">
-			        <div class="text-center">
-					      <% if restaurant.photo_file_name != nil %>
-                  <%= image_tag restaurant.photo.url(:medium) %>
-                <% else %>
-                  <%= image_tag("no_image.jpg", size: "200x134") %>
-                <% end %>
-				      </div>
-		        </div>
-	        </div>
+          <div class="modal-content">
+	          <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title text-center text-info" ><strong>Restaurant Photo</strong></h4>
+	          </div>
+            <div class="modal-body text-center">
+            <% if restaurant.photo_file_name != nil %>
+              <%= image_tag restaurant.photo.url(:medium) %>
+            <% else %>
+              <%= image_tag("no_image.jpg", size: "200x134") %>
+            <% end %>
+            </div>
+          </div>
         </div>
-      </div>	
+      </div>
     </div>
     <div class="col-lg-1 col-md-1 col-sm-1 col-xs-3">
       <% if current_user %>
@@ -86,6 +83,7 @@
 			<% end %>
     </div>
   </div><hr>
+  <% i+=1 %>
   <% end %>
 </div>	 
 

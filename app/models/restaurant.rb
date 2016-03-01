@@ -1,6 +1,6 @@
 class Restaurant < ActiveRecord::Base
   has_attached_file :photo,
-	                  :styles => {original: "1200x900>",medium: "100x67>"},
+	                  :styles => {original: "1200x900>",medium: "600x400>"},
 	                  :default_url => "/images/:style/missing.png"
 	validates_attachment :photo,
 	  content_type: { content_type: ["image/jpeg", "image/gif", "image/png"]},

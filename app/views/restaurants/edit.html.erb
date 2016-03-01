@@ -1,9 +1,11 @@
+<!-- Restaurant new.html.erb -->
 <div id="restaurant-edit" class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
 	<h3>修改美食餐廳囉！</h3>
 	
 	<hr> <!-- horizontal line -->
 	
 	<%= simple_form_for [@map, @restaurant] do |f| %>
+	  <%= f.input :photo, as: :file, label: '餐廳照片', hint: 'Less than 1MB' %>
 		<%= f.input :website, label: '餐廳的食記網址', input_html: { class: 'form-control'}, placeholder: '食記網址' %>
   	<%= f.input :location, label: '地址', input_html: {class: 'form-control'}, placeholder: '餐廳地址' %>
   	<%= f.submit "Submit", class: "btn btn-primary", data: { disable_with: "Submitting.."} %>
